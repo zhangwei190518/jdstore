@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Select.</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', 'https://unpkg.com/element-ui/lib/theme-default/index.css' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload', :async => true %>
+  </head>
+
+  <body id="myPage" data-spy="scroll" data-target="#myNavbar" data-offset="60">
+    <div class="container-fluid">
+      <div class="row">
+        <%= render "common/navbar" %>
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>
