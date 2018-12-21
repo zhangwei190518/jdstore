@@ -29,8 +29,8 @@
             <ul class="dropdown-menu">
               <% if current_user.admin? %>
                 <li><%= link_to("管理后台", admin_products_path, method: :get) %></li>
+                <hr>
               <% end %>
-              <hr>
               <li>
                 <%= link_to("我的订单", account_orders_path ) %>
               </li>
