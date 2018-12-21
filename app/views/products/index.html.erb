@@ -1,14 +1,11 @@
 <div class="row">
-  <% @products.each do |product| %>
-    <div class="col-xs-6 col-md-3">
-      <%= link_to product_path(product) do %>
-        <% if product.image.present? %>
-          <%= image_tag(product.image.thumb.url, class: "thumbnail") %>
-        <% else %>
-          <%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail") %>
+  <div class="col-md-10 col-md-offset-1", style="margin-top: 70px;margin-bottom: -18px;" >
+    <div class="productList-wrap">
+      <ul class="productList clearfix">
+        <% @products.each do |product| %>
+          <%= render :partial => "product_list", :locals => { :product => product } %>
         <% end %>
-      <% end %>
-      <%= product.title %> ￥ <%= product.price %>
+      </ul>
     </div>
-  <% end %>
+  </div>
 </div>

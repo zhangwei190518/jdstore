@@ -1,0 +1,25 @@
+<div class="col-md-3 col-xs-5", style="padding-left: 10px; padding-right: 10px; padding-bottom: 10px;">
+  <li id="product-<%= product.id %>" class="productList-item productList-panel">
+    <div class="productList-item-pic", style="position: relative;">
+      <%= link_to product_path(product) do %>
+        <% if product.image.present? %>
+          <%= image_tag(product.image.thumb.url) %>
+        <% else %>
+          <%= image_tag("http://placehold.it/418x418&text=No Pic") %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="productList-item-price">￥<%= product.price %>
+      <% if product.quantity <= 0 %>
+        <div class="productList-item-sellout", style="margin-top: -33px;">
+          <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+        </div>
+      <% end %>
+    </div>
+    <div class="productList-item-name ell">
+      <%= link_to product_path(product) do %>
+        <%= product.title %>
+      <% end %>
+    </div>
+  </li>
+</div>
