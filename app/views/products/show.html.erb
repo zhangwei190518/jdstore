@@ -1,28 +1,65 @@
 <div class="row">
-  <div class="col-md-6">
-    <% if @product.image.present? %>
-      <%= image_tag(@product.image.medium.url, class: "thumbnail") %>
-    <% else %>
-      <%= image_tag("http://placehold.it/400x400&text=No Pic", class: "thumbnail") %>
-    <% end %>
-  </div>
-  <div class="col-md-6">
-    <h2> <%= @product.title %> </h2>
-    <div style="height:100px;">
-      <p>
-        <%= @product.description %>
-      </p>
-    </div>
-    <div> 数量 : <%= @product.quantity %> </div>
-    <div class="productList-item-price"> ￥ <%= @product.price %> </div>
-    <div> 联系卖家 : <%= @product.user.mobile %> </div>
-    <div class="pull-right">
-      <% if @product.quantity > 0 %>
-        <%= link_to("加入购物车", add_to_cart_product_path(@product), method: :post,
-                    class: "btn btn-lg btn-danger") %>
-      <% else %>
-        已销售一空，无法购买
-      <% end %>
+  <div class="col-md-10 col-md-offset-1", style="margin-top: 70px;">
+    <div class="panel panel-default">
+      <div class="panel-body", style="padding: 45px 0px;">
+
+        <!-- 商品圖片區開始 -->
+        <div class="col-md-5 col-md-offset-1">
+          <% if @product.image.present? %>
+            <%= image_tag(@product.image.medium.url, class: "thumbnail") %>
+          <% else %>
+            <%= image_tag("http://placehold.it/400x400&text=No Pic", class: "thumbnail") %>
+          <% end %>
+        </div>
+        <!-- 商品圖片區結束 -->
+
+        <!-- 商品訊息區開始 -->
+        <div class="col-md-5 col-md-offet-1">
+          <!-- 商品名 -->
+          <div style="height: 169px;">
+            <h3> <%= @product.title %></h3>
+          </div>
+          <!-- 商品庫存 -->
+          <div style="text-align: left;">
+            现有库存量:<%= @product.quantity %>
+          </div>
+
+          <hr>
+          <!-- 商品價格 -->
+          <div class="well well-lg", style="text-align: right; padding-right: 30px; margin-bottom: 0px;">
+            <h4 style="color: #B4423C;"> ￥ <%= @product.price %></h4>
+          </div>
+          <!-- 商品購買集合鈕開始 -->
+          <div class="btn-group btn-group-justified", style="height: 60px;">
+            <% if @product.quantity.present? && @product.quantity > 0 %>
+              <%= link_to("加入购物车", add_to_cart_product_path(@product), :method => :post, class: "btn btn-primary btn-lg") %>
+            <% else %>
+              <%= link_to("已售罄", add_to_cart_product_path(@product), :method => :post,  class: "btn btn-primary btn-lg btn-danger disabled") %>
+            <% end %>
+          </div>
+          <!-- 商品購買集合鈕結束 -->
+        </div>
+        <!-- 商品訊息區結束 -->
+      </div>
     </div>
   </div>
 </div>
+
+<!-- 商品详情 -->
+<div class="row">
+  <div class="col-md-10  col-md-offset-1 col-xs-12", style="float: left;">
+    <div class="productDetail">
+      <ul class="productDetail-tabList">
+        <li class="productDetail-tabList-tab productDetail-tabList-activeTab">
+          商品详情
+        </li>
+      </ul>
+      <div class="productDetail-contentWrap">
+        <div class="productDetail-content col-centered" style="display: block; overflow: hidden;">
+          <p><%= simple_format(@product.description) %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- 商品详情结束 -->
