@@ -346,4 +346,13 @@ $btn-background-hover: #00DBE9;
   text-align:left;
   margin-bottom: 75px;
 }
+
+// product/show商品詳情页圖片開始
+.productDetail-introImg {
+  img{
+    margin-top: -10px;
+    width: 100%;
+  }
+}
+// product/show商品詳情页圖片結束
 // product/show页面中商品详情结束

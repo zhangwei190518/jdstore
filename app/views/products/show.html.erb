@@ -55,9 +55,15 @@
         </li>
       </ul>
       <div class="productDetail-contentWrap">
-        <div class="productDetail-content col-centered" style="display: block; overflow: hidden;">
-          <p><%= simple_format(@product.description) %></p>
+        <!-- 商品详情区域显示多张图片开始 -->
+        <div class="productDetail-introImg">
+          <% if @pictures.present? %>
+            <% @pictures.each do |p| %>
+              <%= image_tag p.avatar.url %>
+            <% end %>
+          <% end %>
         </div>
+        <!-- 商品详情区域显示多张图片结束 -->
       </div>
     </div>
   </div>

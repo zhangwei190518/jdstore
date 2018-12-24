@@ -2,6 +2,9 @@ class Product < ApplicationRecord
   mount_uploader :image, ImageUploader
 
   belongs_to :user
+  has_many :pictures
+
+  accepts_nested_attributes_for :pictures
 
   validates :title, presence: { message: "请输入商品名称" }
   validates :price, presence: { message: "请输入商品价格" }
