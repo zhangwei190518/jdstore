@@ -16,18 +16,26 @@
         <!-- 商品訊息區開始 -->
         <div class="col-md-5 col-md-offet-1">
           <!-- 商品名 -->
-          <div style="height: 169px;">
+          <div style="height: 100px;">
             <h3> <%= @product.title %></h3>
           </div>
+          <!-- 商品促销条款 -->
+          <div style="text-align: left;margin-bottom: 20px;">
+            促销: 购买1-5件时享受单件价￥ <%= @product.price %>，超出数量以结算价为准
+          </div>
           <!-- 商品庫存 -->
+          <div style="text-align: left;margin-bottom: 20px;">
+            库存: <%= @product.quantity %>
+          </div>
+          <!-- 商品配送政策 -->
           <div style="text-align: left;">
-            现有库存量:<%= @product.quantity %>
+            配送: 顺丰包邮 从北京发货，并提供售后服务
           </div>
 
           <hr>
           <!-- 商品價格 -->
           <div class="well well-lg", style="text-align: right; padding-right: 30px; margin-bottom: 0px;">
-            <h4 style="color: #B4423C;"> ￥ <%= @product.price %></h4>
+            秒杀价： <h4 style="color: #B4423C;"> ￥ <%= @product.price %></h4>
           </div>
           <!-- 商品購買集合鈕開始 -->
           <div class="btn-group btn-group-justified", style="height: 60px;">

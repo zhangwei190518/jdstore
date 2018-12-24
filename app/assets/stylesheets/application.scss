@@ -351,7 +351,8 @@ $btn-background-hover: #00DBE9;
 .productDetail-introImg {
   img{
     margin-top: -10px;
-    width: 100%;
+    margin-bottom: 20px;
+    width: 80%;
   }
 }
 // product/show商品詳情页圖片結束
@@ -360,4 +361,24 @@ $btn-background-hover: #00DBE9;
 .checkout {
   height: 30px;
   line-height: 30px;
+}
+
+// 商品排序显示
+.order {
+  background: #101846;
+  height: 44px;
+  line-height: 44px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 20px;
+  color: #aaaaaa;
+  padding-left: 30px;
+  p.title {
+    float:left;
+    display:inline;
+    height: 44px;
+    line-height: 44px;
+    padding-left:20px;
+    padding-right:20px;
+  }
 }
