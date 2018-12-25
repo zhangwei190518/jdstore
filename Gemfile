@@ -39,6 +39,7 @@ gem 'figaro'
 gem 'will_paginate'
 gem "intercom-rails"
 gem 'social-share-button' #社群分享功能
+gem 'ransack'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <div class="search-bar">
+      <% if @query_string.blank? %>
+        <p>搜索信息不能为空，请您输入相关信息进行搜索。</p>
+      <% elsif @products.blank? %>
+        <p>没有找到「<%= @query_string %>」的商品信息，请输入关键字搜索。</p>
+      <% else %>
+        <p> 有关「<%= @query_string %>」的商品信息。</p>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <div class="productList-wrap">
+      <ul class="productList clearfix">
+        <% @products.each do |product| %>
+          <%= render partial: "product_list", locals: { product: product } %>
+        <% end %>
+      </ul>
+      <div class="text-center">
+        <%= will_paginate(@products) %>
+      </div>
+    </div>
+  </div>
+</div>

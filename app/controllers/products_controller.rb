@@ -19,4 +19,10 @@ class ProductsController < ApplicationController
     end
     redirect_to :back
   end
+
+  def search
+    @query_string = params[:q].gsub(/\\|\'|\/|\?/, "") if params[:q].present?
+
+    @products = Product.selling.ransack({title_cont: @query_string}).result(distinct: true).paginate(page: params[:page], per_page: 8)
+  end
 end
