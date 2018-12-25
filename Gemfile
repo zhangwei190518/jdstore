@@ -38,6 +38,7 @@ gem 'qiniu-rs'
 gem 'figaro'
 gem 'will_paginate'
 gem "intercom-rails"
+gem 'social-share-button' #社群分享功能
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
