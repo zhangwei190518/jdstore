@@ -37,6 +37,7 @@ gem 'carrierwave-qiniu'
 gem 'qiniu-rs'
 gem 'figaro'
 gem 'will_paginate'
+gem "intercom-rails"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
