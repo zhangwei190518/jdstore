@@ -20,9 +20,10 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   protected
-    def prepare_intercom_shutdown
-      IntercomRails::ShutdownHelper.prepare_intercom_shutdown(session)
-    end
+
+  def prepare_intercom_shutdown
+    IntercomRails::ShutdownHelper.prepare_intercom_shutdown(session)
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params
