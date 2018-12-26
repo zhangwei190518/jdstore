@@ -4,6 +4,7 @@ class Product < ApplicationRecord
   belongs_to :user
   has_many :pictures
   belongs_to :category
+  has_many :comments
 
   accepts_nested_attributes_for :pictures
 
