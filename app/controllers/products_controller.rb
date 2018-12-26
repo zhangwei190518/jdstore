@@ -5,8 +5,8 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-    @pictures = @product.pictures.all.order_by_created_at_asc
-    @comments = @product.comments.all.order_by_created_at_desc
+    @pictures = @product.pictures.all.asc
+    @comments = @product.comments.all.recent
   end
 
   def add_to_cart
