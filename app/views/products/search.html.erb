@@ -16,9 +16,7 @@
   <div class="col-md-10 col-md-offset-1">
     <div class="productList-wrap">
       <ul class="productList clearfix">
-        <% @products.each do |product| %>
-          <%= render partial: "product_list", locals: { product: product } %>
-        <% end %>
+        <%= render partial: "products/product_list", collection: @products, as: :product %>
       </ul>
       <div class="text-center">
         <%= will_paginate(@products) %>
