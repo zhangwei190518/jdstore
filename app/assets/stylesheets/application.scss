@@ -374,14 +374,6 @@ $btn-background-hover: #00DBE9;
   margin-top: 20px;
   color: #aaaaaa;
   padding-left: 30px;
-  p.title {
-    float:left;
-    display:inline;
-    height: 44px;
-    line-height: 44px;
-    padding-left:20px;
-    padding-right:20px;
-  }
 }
 
 .social-share-button {
@@ -402,4 +394,20 @@ $btn-background-hover: #00DBE9;
   margin-top: 70px;
   color: #aaaaaa;
   padding-left: 30px;
+}
+
+.menuList {
+  list-style-type: none;
+  padding: 0px;
+  height: 44px;
+  line-height: 44px;
+  font-size: 16px;
+}
+
+.menuList-item {
+  float: left;
+  padding: 0 22px;
+  a {
+    text-decoration: none;
+  }
 }
