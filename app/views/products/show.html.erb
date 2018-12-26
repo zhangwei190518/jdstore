@@ -62,19 +62,42 @@
     <div class="productDetail">
       <ul class="productDetail-tabList">
         <li class="productDetail-tabList-tab productDetail-tabList-activeTab">
-          商品详情
+          商品详情及评价
         </li>
       </ul>
       <div class="productDetail-contentWrap">
-        <!-- 商品详情区域显示多张图片开始 -->
-        <div class="productDetail-introImg">
-          <% if @pictures.present? %>
-            <% @pictures.each do |p| %>
-              <%= image_tag p.avatar.url %>
+        <div class="productDetail-content">
+          <!-- 商品详情区域显示多张图片开始 -->
+          <div class="productDetail-introImg">
+            <% if @pictures.present? %>
+              <% @pictures.each do |p| %>
+                <%= image_tag p.avatar.url %>
+              <% end %>
             <% end %>
-          <% end %>
+          </div>
+          <!-- 商品详情区域显示多张图片结束 -->
         </div>
-        <!-- 商品详情区域显示多张图片结束 -->
+
+
+        <div class="productDetail-content">
+          <div class="product-comments">
+            <p>来自我们顾客的宝贵评价</p>
+            <div class="commentList">
+              <% @comments.each do |comment| %>
+                <li class="commentList-item">
+                  <p class="content">
+                    <%= simple_format(comment.body)  %>
+                  </p>
+                  <p class="name">
+                    <%= comment.user.email %>
+                  </p>
+                </li>
+              <% end %>
+            </div>
+            <p>想提供您的心得吗？欢迎留言评价！</p>
+            <p class="comment-say"><%= link_to("发表评价", new_product_comment_path(@product), :class => "btn btn-primary btn-sm") %></p>
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   end
 
   resources :products do
+    resources :comments, only: [:index, :new, :create]
+
     member do
       post :add_to_cart
     end
