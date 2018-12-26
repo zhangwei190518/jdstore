@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3 col-centered" id="new-comment-bar">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <p id="new-comment-title">为<strong>「 <%= @product.title %> 」</strong>填写评价</p>
+      </div>
+      <div class="panel-body">
+        <%= render 'form', comment: @comment %>
+      </div>
+    </div>
+  </div>
+</div>
+

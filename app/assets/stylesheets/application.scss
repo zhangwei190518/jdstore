@@ -328,23 +328,21 @@ $btn-background-hover: #00DBE9;
   }
   .productDetail-tabList-tab:hover,
   .productDetail-tabList-tab:active {
-    color: #edbdb5;
+    color: #c6af92;
     background: #101846;
+    border-right-color: #101846;
   }
 }
 
 .productDetail-contentWrap{
-  // width: 750px;
+  width: 80%;
   height: auto;
   margin-left:auto !important;
   margin-right:auto !important;
 }
 .productDetail-content {
-  display: none;
-  // width: 750px;
-  height: auto;
-  padding: 60px 45px;
-  text-align:left;
+  display: block;
+  overflow: hidden;
   margin-bottom: 75px;
 }
 
@@ -353,11 +351,54 @@ $btn-background-hover: #00DBE9;
   img{
     margin-top: -10px;
     margin-bottom: 20px;
-    width: 80%;
+    width: 100%;
   }
 }
 // product/show商品詳情页圖片結束
 // product/show页面中商品详情结束
+
+.product-comments {
+  border-top: thin solid;
+  border-bottom: thin solid;
+}
+
+.commentList {
+  list-style-type: none;
+  border-top: thin dotted;
+  border-bottom: thin dotted;
+}
+
+.commentList-item {
+  border-bottom: 1px dotted #DDDDDD;
+}
+
+.commentList-item .content {
+  text-align: left;
+  font-size: 12px;
+}
+
+.commentList-item .name {
+  text-align: right;
+  font-size: 12px;
+}
+
+.comment-say {
+  margin: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: center;
+  font-size: 20px;
+}
+
+#new-comment-bar {
+  margin-top: 150px;
+}
+
+#new-comment-title {
+  font-size: 1.2em;
+  text-align: center;
+  margin-bottom: 0px;
+}
 
 .checkout {
   height: 30px;
