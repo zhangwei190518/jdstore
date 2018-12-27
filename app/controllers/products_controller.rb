@@ -13,7 +13,7 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @pictures = @product.pictures.asc
-    @comments = @product.comments.recent
+    @comments = @product.comments.includes(:user).recent
   end
 
   def add_to_cart
