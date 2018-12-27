@@ -10,7 +10,7 @@
         <li>
           <%= link_to("进入商城首页", products_path) %>
         </li>
-        <% @all_categories.each do |category| %>
+        <% @categories.each do |category| %>
           <li>
             <%= link_to category.name, products_path(category_name: category.name) %>
           </li>

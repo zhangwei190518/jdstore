@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :all_categories
+  before_action :find_categories
   protect_from_forgery with: :exception
 
   def admin_required
@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
     return cart
   end
 
-  def all_categories
-    @all_categories = Category.all
+  def find_categories
+    @categories = Category.all
   end
 end
