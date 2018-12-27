@@ -7,7 +7,16 @@
 <div class="row">
   <div class="col-md-10 col-md-offset-1" >
     <div class="order clearfix">
-      <p class="title"><%= link_to("全商品列表", products_path) %></p>
+      <ul class="menuList">
+        <li class="menuList-item">
+          <%= link_to("全商品列表", products_path)%>
+        </li>
+        <% @categories.each do |category| %>
+          <li class="menuList-item">
+            <%= link_to category.name, products_path(category_name: category.name) %>
+          </li>
+        <% end %>
+      </ul>
     </div>
   </div>
 </div>

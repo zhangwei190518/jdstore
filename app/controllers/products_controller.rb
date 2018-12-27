@@ -1,6 +1,13 @@
 class ProductsController < ApplicationController
   def index
-    @products = Product.selling.paginate(:page => params[:page], :per_page => 8)
+    @products = Product.selling
+
+    if params[:category_name].present?
+      category = Category.find_by(name: params[:category_name])
+      @products = @products.where(category: category)
+    end
+
+    @products = @products.paginate(page: params[:page], per_page: 8)
   end
 
   def show
