@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
       @products = @products.where(category: category)
     end
 
-    @products = @products.paginate(:page => params[:page], :per_page => 8)
+    @products = @products.paginate(page: params[:page], per_page: 8)
   end
 
   def show
