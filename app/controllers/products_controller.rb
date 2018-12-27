@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   def index
-    @products = Product.selling
+    @products = Product.includes(:category).selling
 
     if params[:category_name].present?
       category = Category.find_by(name: params[:category_name])
