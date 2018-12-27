@@ -1,5 +1,5 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :category do
-    name '手机'
+    name { "手机" }
   end
 end

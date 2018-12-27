@@ -1,8 +1,8 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :user do
-    sequence(:email) {|n| "#{username}@gmail.com" }
-    sequence(:mobile) {|n| "151#{email.hash.abs.to_s[0..7]}" }
-    password '12345678'
-    password_confirmation '12345678'
+    sequence(:email) {|n| "#{n}@gmail.com" }
+    mobile { "15100000000" }
+    password { "12345678" }
+    password_confirmation { "12345678" }
   end
 end
