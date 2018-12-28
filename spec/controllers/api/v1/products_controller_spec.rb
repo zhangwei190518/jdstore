@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe Api::V1::ProductsController, type: :controller do
 
-  let(:product) { create(:selling_product) }
+  let(:product) { create(:public_product) }
 
   it "GET #index" do
     get :index, params: { format: :json }

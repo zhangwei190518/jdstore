@@ -2,16 +2,16 @@ require "rails_helper"
 
 RSpec.describe "Products", type: :request do
 
-  let(:product) { create(:selling_product) }
+  let(:product) { create(:public_product) }
   let(:category) { create(:category) }
   let(:user) { create(:user) }
 
   describe "GET /api/v1/products" do
     context "right count" do
       before do
-        create_list(:selling_product, 3, category: category)
+        create_list(:public_product, 3, category: category)
       end
-      
+
       it "without params" do
         get "/api/v1/products", params: { format: :json }
 
@@ -19,23 +19,24 @@ RSpec.describe "Products", type: :request do
         expect(result["products"].size).to eq 3
       end
 
-      context 'with category_name params' do
+      context "with category_name params" do
         before do
-          create(:selling_product, category: create(:category, name: "Mac"))
+          @iphone_products = create_list(:public_product, 3, category: create(:category, name: "iPhone"))
+          @mac_products = create_list(:mac_product, 2, category: create(:category, name: "Mac"))
         end
 
-        it "category_name is 手机" do
-          get "/api/v1/products", params: { category_name: "手机", format: :json }
+        it "when category is iPhone" do
+          get "/api/v1/products", params: { category_name: "iPhone", format: :json }
 
           result = JSON.parse(response.body)
-          expect(result["products"].size).to eq 3
+          expect(result["products"].size).to eq @iphone_products.size
         end
 
-        it "category_name is Mac" do
+        it "when category is Mac" do
           get "/api/v1/products", params: { category_name: "Mac", format: :json }
 
           result = JSON.parse(response.body)
-          expect(result["products"].size).to eq 1
+          expect(result["products"].size).to eq @mac_products.size
         end
       end
 
@@ -49,7 +50,7 @@ RSpec.describe "Products", type: :request do
     end
 
     it "paged" do
-      create_list(:selling_product, 5)
+      create_list(:public_product, 5)
 
       get "/api/v1/products", params: { page: 3, per_page: 2, format: :json }
 
