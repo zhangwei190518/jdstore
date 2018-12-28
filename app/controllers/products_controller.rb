@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
       @products = @products.where(category: category)
     end
 
-    @products = @products.paginate(page: params[:page], per_page: (params[:per_page] || 8))
+    @products = @products.paginate(page: params[:page], per_page: per_page)
   end
 
   def show
@@ -31,6 +31,12 @@ class ProductsController < ApplicationController
   def search
     @query_string = params[:q].gsub(/\\|\'|\/|\?/, "") if params[:q].present?
 
-    @products = Product.selling.ransack({title_cont: @query_string}).result(distinct: true).paginate(page: params[:page], per_page: (params[:per_page] || 8))
+    @products = Product.selling.ransack({title_cont: @query_string}).result(distinct: true).paginate(page: params[:page], per_page: per_page)
+  end
+
+  private
+
+  def per_page
+    params[:per_page] || 8
   end
 end
