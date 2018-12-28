@@ -14,7 +14,7 @@ class Product < ApplicationRecord
   validates :quantity, presence: { message: "请输入库存数量" }, numericality: { greater_than_or_equal: 0 }
   validates_presence_of :user_id
 
-  delegate :name, to: :category, prefix: 'category', allow_nil: true
+  delegate :name, to: :category, prefix: "category", allow_nil: true
 
   scope :selling, -> { where(is_hidden: false) } # 选出正在销售中的商品
 end

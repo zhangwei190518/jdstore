@@ -1,8 +1,15 @@
 FactoryBot.define do
   factory :user do
-    sequence(:email) {|n| "#{n}@gmail.com" }
+    email { "test@gmail.com" }
     mobile { "15100000000" }
-    password { "12345678" }
-    password_confirmation { "12345678" }
+    password { Faker::Internet.password }
+    password_confirmation { password }
+  end
+
+  factory :random_user, class: User do
+    email { Faker::Internet.safe_email }
+    mobile { Faker::PhoneNumber.cell_phone }
+    password { Faker::Internet.password }
+    password_confirmation { password }
   end
 end
