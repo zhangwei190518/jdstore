@@ -1,19 +1,19 @@
 class ProductsController < ApplicationController
   def index
-    @products = Product.selling
+    @products = Product.includes(:category).selling
 
     if params[:category_name].present?
       category = Category.find_by(name: params[:category_name])
       @products = @products.where(category: category)
     end
 
-    @products = @products.paginate(page: params[:page], per_page: 8)
+    @products = @products.paginate(page: params[:page], per_page: (params[:per_page] || 8))
   end
 
   def show
     @product = Product.find(params[:id])
     @pictures = @product.pictures.asc
-    @comments = @product.comments.recent
+    @comments = @product.comments.includes(:user).recent
   end
 
   def add_to_cart
