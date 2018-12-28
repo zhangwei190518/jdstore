@@ -15,4 +15,10 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
 
     expect(response).to have_http_status(200)
   end
+
+  it "GET #search" do
+    get :search, params: { q: "iPhone", format: :json }
+
+    expect(response).to have_http_status(200)
+  end
 end

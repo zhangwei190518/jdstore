@@ -94,4 +94,33 @@ RSpec.describe "Products", type: :request do
       expect(result["comments"].first["user"]["email"]).to eq user.email
     end
   end
+
+  describe "GET /api/v1/products/search" do
+    it "with matched result" do
+      create_list(:public_product, 2)
+      mac_products = create_list(:mac_product, 2)
+      get "/api/v1/products/search", params: { q: "Ma", format: :json }
+
+      result = JSON.parse(response.body)["products"]
+      expect(result.size).to eq mac_products.size
+      expect(result.first["title"]).to eq "Mac"
+    end
+
+    it "without matched result" do
+      create_list(:public_product, 2)
+      get "/api/v1/products/search", params: { q: "sofa", format: :json }
+
+      result = JSON.parse(response.body)["products"]
+      expect(result.size).to be_zero
+    end
+
+    it "paged" do
+      create_list(:public_product, 3)
+
+      get "/api/v1/products/search", params: { q: "phone", page: 2, per_page: 2, format: :json }
+
+      result = JSON.parse(response.body)["products"]
+      expect(result.size).to eq 1
+    end
+  end
 end

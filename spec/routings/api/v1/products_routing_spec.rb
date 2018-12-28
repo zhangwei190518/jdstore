@@ -10,6 +10,10 @@ RSpec.describe Api::V1::ProductsController, type: :routing do
     it "routes to #show" do
       expect(:get => "api/v1/products/1").to route_to("api/v1/products#show", id: "1", format: :json)
     end
+
+    it "routes to #search" do
+      expect(:get => "api/v1/products/search").to route_to("api/v1/products#search", format: :json)
+    end
   end
 
 end
