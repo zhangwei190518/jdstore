@@ -97,12 +97,10 @@ RSpec.describe "Products", type: :request do
 
   describe "GET /api/v1/products/search" do
     it "without q params" do
-      products = create_list(:public_product, 2)
-
       get "/api/v1/products/search"
 
-      result = JSON.parse(response.body)["products"]
-      expect(result.size).to eq products.size
+      result = JSON.parse(response.body)
+      expect(result["message"]).to eq "缺少必要的参数"
     end
 
     it "with matched result" do

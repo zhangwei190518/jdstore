@@ -30,5 +30,11 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
 
       expect(response).to have_http_status(404)
     end
+
+    it "without q params" do
+      get :search
+
+      expect(response).to have_http_status(422)
+    end
   end
 end

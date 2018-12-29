@@ -9,6 +9,8 @@ class Api::V1::ProductsController < ::ProductsController
   end
 
   def search
+    render json: { success: false, message: t("response_message.params_missing") }, status: :unprocessable_entity and return if params[:q].blank?
+
     super
 
     render json: { success: false, message: t("response_message.not_found") }, status: :not_found and return if @products.blank?

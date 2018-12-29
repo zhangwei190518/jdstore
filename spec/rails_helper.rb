@@ -36,7 +36,7 @@ RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   config.before(:each) do
-    request.env["HTTP_ACCEPT"] = 'application/json' if defined?(request)
+    request.env["HTTP_ACCEPT"] = "application/json" if defined?(request)
   end
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
