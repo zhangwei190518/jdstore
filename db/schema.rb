@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181226055511) do
+ActiveRecord::Schema.define(version: 20181229040735) do
 
   create_table "cart_items", force: :cascade do |t|
     t.integer  "cart_id"
@@ -58,8 +58,10 @@ ActiveRecord::Schema.define(version: 20181226055511) do
   create_table "pictures", force: :cascade do |t|
     t.integer  "product_id"
     t.string   "avatar"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "kind",       default: 0
+    t.index ["kind"], name: "index_pictures_on_kind"
   end
 
   create_table "product_lists", force: :cascade do |t|
@@ -86,15 +88,17 @@ ActiveRecord::Schema.define(version: 20181226055511) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "",    null: false
-    t.string   "encrypted_password",     default: "",    null: false
+    t.string   "email",                             default: "",    null: false
+    t.string   "encrypted_password",                default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
-    t.boolean  "is_admin",               default: false
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
+    t.boolean  "is_admin",                          default: false
     t.string   "mobile"
+    t.string   "authentication_token",   limit: 30
+    t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
