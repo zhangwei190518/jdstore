@@ -16,12 +16,7 @@ module SecurityToken
 
   def token_effect?(token)
     ct = current_token
-    Time.now.to_i < ct[:expired_at].to_i && token == current_token[:access_token]
-  end
-
-  # @TODO 实现Token生成
-  def generate_access_token
-    current_token
+    Time.now.to_i < ct[:expired_at].to_i && token == ct[:access_token]
   end
 
 end
