@@ -2,6 +2,10 @@ require "rails_helper"
 
 RSpec.describe Api::V1::ProductsController, type: :controller do
 
+  before(:each) do
+    controller.class.skip_before_action :access_token_auth, raise: false
+  end
+
   let(:product) { create(:public_product) }
 
   it "GET #index" do

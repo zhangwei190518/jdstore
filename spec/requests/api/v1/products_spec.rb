@@ -2,6 +2,8 @@ require "rails_helper"
 
 RSpec.describe "Products", type: :request do
 
+  request_helper
+
   let(:product) { create(:public_product) }
   let(:category) { create(:category) }
   let(:user) { create(:user) }
@@ -13,7 +15,7 @@ RSpec.describe "Products", type: :request do
       end
 
       it "without params" do
-        get "/api/v1/products"
+        get "/api/v1/products", params_with_token
 
         result = JSON.parse(response.body)
         expect(result["products"].size).to eq 3
@@ -26,14 +28,14 @@ RSpec.describe "Products", type: :request do
         end
 
         it "when category is iPhone" do
-          get "/api/v1/products", params: { category_name: "iPhone" }
+          get "/api/v1/products", params: params_with_token[:params].merge(category_name: "iPhone")
 
           result = JSON.parse(response.body)
           expect(result["products"].size).to eq @iphone_products.size
         end
 
         it "when category is Mac" do
-          get "/api/v1/products", params: { category_name: "Mac" }
+          get "/api/v1/products", params: params_with_token[:params].merge(category_name: "Mac")
 
           result = JSON.parse(response.body)
           expect(result["products"].size).to eq @mac_products.size
@@ -42,7 +44,7 @@ RSpec.describe "Products", type: :request do
 
       it "filter hidden products" do
         create(:hidden_product)
-        get "/api/v1/products"
+        get "/api/v1/products", params_with_token
 
         result = JSON.parse(response.body)
         expect(result["products"].size).to eq 3
@@ -52,7 +54,7 @@ RSpec.describe "Products", type: :request do
     it "paged" do
       create_list(:public_product, 5)
 
-      get "/api/v1/products", params: { page: 3, per_page: 2 }
+      get "/api/v1/products", params: params_with_token[:params].merge(page: 3, per_page: 2)
 
       result = JSON.parse(response.body)
       expect(result["products"].size).to eq 1
@@ -61,7 +63,7 @@ RSpec.describe "Products", type: :request do
     it "with right data structure" do
       product
 
-      get "/api/v1/products"
+      get "/api/v1/products", params_with_token
 
       result = JSON.parse(response.body)["products"].first
       expect(result["title"]).to eq "iPhone"
@@ -80,7 +82,7 @@ RSpec.describe "Products", type: :request do
       comment = create(:comment, product: product, user: user)
       create(:comment)
 
-      get "/api/v1/products/#{product.id}"
+      get "/api/v1/products/#{product.id}", params_with_token
 
       result = JSON.parse(response.body)
       expect(result["title"]).to eq product.title
@@ -97,7 +99,7 @@ RSpec.describe "Products", type: :request do
 
   describe "GET /api/v1/products/search" do
     it "without q params" do
-      get "/api/v1/products/search"
+      get "/api/v1/products/search", params_with_token
 
       result = JSON.parse(response.body)
       expect(result["message"]).to eq "缺少必要的参数"
@@ -106,7 +108,7 @@ RSpec.describe "Products", type: :request do
     it "with matched result" do
       create_list(:public_product, 2)
       mac_products = create_list(:mac_product, 2)
-      get "/api/v1/products/search", params: { q: "Ma" }
+      get "/api/v1/products/search", params: params_with_token[:params].merge(q: "Ma")
 
       result = JSON.parse(response.body)["products"]
       expect(result.size).to eq mac_products.size
@@ -115,7 +117,7 @@ RSpec.describe "Products", type: :request do
 
     it "without matched result" do
       create_list(:public_product, 2)
-      get "/api/v1/products/search", params: { q: "non_exists_product_title" }
+      get "/api/v1/products/search", params: params_with_token[:params].merge(q: "non_exists_product_title")
 
       result = JSON.parse(response.body)
       expect(result["message"]).to eq "记录不存在"
@@ -125,7 +127,7 @@ RSpec.describe "Products", type: :request do
       create_list(:public_product, 3)
       second_page_products_size = 1
 
-      get "/api/v1/products/search", params: { q: "phone", page: 2, per_page: 2 }
+      get "/api/v1/products/search", params: params_with_token[:params].merge(q: "phone", page: 2, per_page: 2)
 
       result = JSON.parse(response.body)["products"]
       expect(result.size).to eq second_page_products_size

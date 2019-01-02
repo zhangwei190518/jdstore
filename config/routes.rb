@@ -48,9 +48,13 @@ Rails.application.routes.draw do
     end
   end
 
+  concerns :api_base
+
   namespace :api, defaults: { format: :json } do
     namespace :v1, as: :v1 do
       concerns :api_base
+
+      get "access_token" => "access_tokens#show"
     end
   end
 end

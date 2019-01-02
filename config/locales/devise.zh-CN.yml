@@ -1,0 +1,5 @@
+zh-CN:
+  devise:
+    failure:
+      user:
+        unauthenticated: "继续操作前请注册或者登录。"

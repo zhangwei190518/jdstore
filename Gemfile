@@ -40,6 +40,7 @@ gem 'will_paginate'
 gem "intercom-rails"
 gem 'social-share-button' #社群分享功能
 gem 'ransack'
+gem "simple_token_authentication", "~> 1.0"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

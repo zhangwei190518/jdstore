@@ -1,5 +1,10 @@
 class ApplicationController < ActionController::Base
+  include SecurityToken
+
+  acts_as_token_authentication_handler_for User, fallback: :none, if: lambda { |controller| controller.request.format.json? }
+
   before_action :find_categories
+  before_action :access_token_auth
   protect_from_forgery with: :exception
 
   def admin_required
