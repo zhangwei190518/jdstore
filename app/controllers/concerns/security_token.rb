@@ -9,9 +9,17 @@ module SecurityToken
     render json: { message: "Token required", success: false }, status: :forbidden if !token_effect?(token)
   end
 
-  # @TODO 实现自动更换，暂时使用固定值模拟
   def current_token
-    { access_token: "TEST-ACCESS-TOKEN", expired_at: Time.now + 7.days }
+    key = "jdstore_access_token"
+    token = Rails.cache.read(key)
+
+    if token.nil? || token[:expired_at].to_i < Time.now.to_i
+      expire_in = [7,10,14].sample.days
+      token = { access_token: SecureRandom.hex(10), expired_at: Time.now + expire_in }
+      Rails.cache.write(key, token, expires_in: expire_in)
+    end
+
+    return token
   end
 
   def token_effect?(token)
