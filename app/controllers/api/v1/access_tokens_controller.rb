@@ -1,10 +1,11 @@
-class Api::V1::UsersController < ApplicationController
+class Api::V1::AccessTokensController < ApplicationController
 
-  skip_before_action :verify_authenticity_token, :access_token_auth, only: [:get_access_token]
+  skip_before_action :verify_authenticity_token, :access_token_auth, only: [:show]
 
-  def get_access_token
+  def show
     if params[:app_id] == JDSTORE_KEYS[:access_token][:app_id] && params[:app_key] == JDSTORE_KEYS[:access_token][:app_key]
       ct = current_token
+
       render json: {
         success: true,
         access_token: ct[:access_token],
@@ -14,4 +15,5 @@ class Api::V1::UsersController < ApplicationController
       render status: :unauthorized
     end
   end
+
 end

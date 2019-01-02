@@ -54,7 +54,7 @@ Rails.application.routes.draw do
     namespace :v1, as: :v1 do
       concerns :api_base
 
-      post "access_token" => "users#get_access_token"
+      get "access_token" => "access_tokens#show"
     end
   end
 end

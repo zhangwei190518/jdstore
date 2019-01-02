@@ -24,4 +24,4 @@ config/database.yml
 public/uploads
 # Ignore application configuration
 /config/application.yml
-/config/initializers/jdstore_contant.rb
+/config/jdstore_contant.rb
