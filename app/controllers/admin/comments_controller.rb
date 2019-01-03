@@ -1,8 +1,5 @@
-class Admin::CommentsController < ApplicationController
-  layout "admin"
+class Admin::CommentsController < AdminController
 
-  before_action :authenticate_user!
-  before_action :admin_required
   before_action :find_comment, only: [:publish, :hide]
 
   def index
@@ -11,12 +8,12 @@ class Admin::CommentsController < ApplicationController
 
   def publish
     @comment.publish!
-    redirect_to :back
+    redirect_back(fallback_location: root_path)
   end
 
   def hide
     @comment.hide!
-    redirect_to :back
+    redirect_back(fallback_location: root_path)
   end
 
   private
