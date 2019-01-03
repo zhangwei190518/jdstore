@@ -42,6 +42,6 @@
 
   <%= f.input :is_hidden, :label => "上线", as: :radio_buttons, collection: [['上线', false], ['隐藏', true]], required: true %>
 
-  <%= f.submit "提交", data: { disable_with: "Submitting..." } %>
+  <%= f.submit "提交", data: { disable_with: "Submitting..." }, class: "btn btn-primary pull-right" %>
 
 <% end %>
