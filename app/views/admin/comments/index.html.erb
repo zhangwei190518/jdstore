@@ -1,0 +1,44 @@
+<h2> 评论列表 </h2>
+
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>内容</th>
+      <th>评论人</th>
+      <th>评论商品</th>
+      <th>是否已隐藏</th>
+      <th width="100"> 操作选项</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @comments.each do |comment| %>
+      <tr>
+        <td>
+          <%= comment.id %>
+        </td>
+        <td>
+          <%= comment.body %>
+        </td>
+        <td>
+          <%= comment.user.email %>
+        </td>
+        <td>
+          <%= link_to product_path(comment.product) do %>
+            <% if comment.product.image.present? %>
+              <%= image_tag(comment.product.image.small.url, class: "small") %>
+            <% else %>
+              <%= image_tag("http://placehold.it/70x70&text=No Pic", class: "small") %>
+            <% end %>
+          <% end %>
+        </td>
+        <td>
+          <%= render_comment_hidden_state(comment) %>
+        </td>
+        <td>
+          <%= render_hidden_btn(comment) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

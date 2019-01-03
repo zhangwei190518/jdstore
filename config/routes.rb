@@ -19,6 +19,12 @@ Rails.application.routes.draw do
           post :return
         end
       end
+      resources :comments do
+        member do
+          put :publish
+          put :hide
+        end
+      end
     end
 
     resources :products do

@@ -7,17 +7,18 @@
     <%= csrf_meta_tags %>
   </head>
 
-  <body>
+  <body id="admin-body">
     <div class="container">
       <%= render "common/navbar" %>
-      <div class="row">
+      <div class="row" id="admin-page">
         <div class="col-md-2">
-          <ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
-            <li> <%= link_to("Products", admin_products_path) %> </li>
-            <li> <%= link_to("Orders", admin_orders_path) %> </li>
+          <ul class="nav nav-pills nav-stacked admin-nav">
+            <li role="presentation"> <%= link_to("商品管理", admin_products_path) %> </li>
+            <li role="presentation"> <%= link_to("订单管理", admin_orders_path) %> </li>
+            <li role="presentation"> <%= link_to("评论管理", admin_comments_path) %> </li>
           </ul>
         </div>
-        <div class="col-md-10">
+        <div class="col-md-10" id="admin-show-page">
           <%= yield %>
         </div>
       </div>
