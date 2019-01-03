@@ -10,7 +10,11 @@ Rails.application.routes.draw do
 
   concern :api_base do
     namespace :admin do
-      resources :products
+      resources :products do
+        collection do
+          get :search
+        end
+      end
       resources :orders do
         member do
           post :cancel
