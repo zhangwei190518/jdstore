@@ -26,7 +26,7 @@ RSpec.describe "Registrations", type: :request do
         expect(result["message"]).to eq ["确认密码 与密码不一致"]
       end
 
-      it 'with invalid email' do
+      it "with invalid email" do
         invalid_signup_params = params_with_token[:params].merge(user: valid_signup_params.merge(email: "invalid email"))
         post "/api/v1/users", params: invalid_signup_params
 
