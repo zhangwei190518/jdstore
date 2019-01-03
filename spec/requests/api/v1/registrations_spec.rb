@@ -4,8 +4,6 @@ RSpec.describe "Registrations", type: :request do
 
   request_helper
 
-  let(:user) { create(:user) }
-
   let(:valid_signup_params) {
     {
       email: Faker::Internet.safe_email,

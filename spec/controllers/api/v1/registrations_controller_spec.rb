@@ -30,14 +30,14 @@ RSpec.describe Api::V1::RegistrationsController, type: :controller do
         invalid_signup_params = valid_signup_params.merge(password: "different password")
         post :create, params: { user: invalid_signup_params }
 
-        expect(response).to have_http_status(422)
+        expect(response).to have_http_status(400)
       end
 
       it 'with invalid email' do
         invalid_signup_params = valid_signup_params.merge(email: "invalid email")
         post :create, params: { user: invalid_signup_params }
 
-        expect(response).to have_http_status(422)
+        expect(response).to have_http_status(400)
       end
     end
   end

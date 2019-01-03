@@ -26,7 +26,6 @@ class Api::V1::SessionsController < Devise::SessionsController
   protected
 
   def invalid_login_attempt
-    warden.custom_failure!
     render json: { message: t("response_message.wrong_login_params"), success: false }, status: :unauthorized
   end
 

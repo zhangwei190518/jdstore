@@ -8,7 +8,7 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
     if user.save
       render partial: "api/v1/users/user", locals: { user: user }
     else
-      render json: { message: user.errors.full_messages, success: false }, status: :unprocessable_entity
+      render json: { message: user.errors.full_messages, success: false }, status: :bad_request
     end
   end
 
