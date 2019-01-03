@@ -30,7 +30,7 @@ RSpec.describe "Sessions", type: :request do
         expect(result["message"]).to eq "邮箱或者密码错误"
       end
 
-      it 'with wrong email' do
+      it "with wrong email" do
         invalid_signin_params = params_with_token[:params].merge(valid_signin_params.merge(email: "wrong email"))
         post "/api/v1/users/sign_in", params: invalid_signin_params
 
