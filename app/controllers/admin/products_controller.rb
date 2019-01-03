@@ -1,7 +1,7 @@
 class Admin::ProductsController < AdminController
 
   def index
-    @products = Product.all
+    @products = Product.all.paginate(page: params[:page], per_page: per_page)
   end
 
   def new
@@ -46,9 +46,20 @@ class Admin::ProductsController < AdminController
     end
   end
 
+  def search
+    @query_string = params[:q].gsub(/\\|\'|\/|\?/, "") if params[:q].present?
+    @products = Product.ransack({title_cont: @query_string}).result(distinct: true).paginate(page: params[:page], per_page: per_page)
+
+    render :index
+  end
+
   private
 
   def product_params
     params.require(:product).permit(:title, :description, :quantity, :price, :image, :is_hidden, :pictures)
+  end
+
+  def per_page
+    params[:per_page] || 10
   end
 end
