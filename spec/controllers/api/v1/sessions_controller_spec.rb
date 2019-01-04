@@ -52,7 +52,7 @@ RSpec.describe Api::V1::SessionsController, type: :controller do
     it "login" do
       delete :destroy
 
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(204)
     end
 
     it "not login" do

@@ -19,7 +19,7 @@ class Api::V1::SessionsController < Devise::SessionsController
       current_user.update(authentication_token: nil)
       sign_out(resource_name)
 
-      render json: { message: "Ok", success: true }, status: :ok
+      render json: { message: "Ok", success: true }, status: :no_content
     end
   end
 

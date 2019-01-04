@@ -48,7 +48,7 @@ RSpec.describe "Sessions", type: :request do
   end
 
   describe "POST /api/v1/users/sign_out" do
-    it "user's authentication_token has been reset" do
+    it "reset user's authentication_token" do
       original_authentication_token = user.authentication_token
 
       delete "/api/v1/users/sign_out", signed_get
