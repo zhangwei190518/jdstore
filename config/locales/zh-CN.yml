@@ -2,3 +2,18 @@
   response_message:
     not_found: "记录不存在"
     params_missing: "缺少必要的参数"
+    wrong_login_params: "邮箱或者密码错误"
+  activerecord:
+    attributes:
+      user:
+        email: "邮箱"
+        password_confirmation: "确认密码"
+
+    errors:
+      models:
+        user:
+          attributes:
+            password_confirmation:
+              confirmation: '与密码不一致'
+            email:
+              invalid: "格式无效"

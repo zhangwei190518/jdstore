@@ -64,6 +64,11 @@ Rails.application.routes.draw do
     namespace :v1, as: :v1 do
       concerns :api_base
 
+      devise_for :users, controllers: {
+        registrations: "api/v1/registrations",
+        sessions: "api/v1/sessions"
+      }
+
       get "access_token" => "access_tokens#show"
     end
   end
