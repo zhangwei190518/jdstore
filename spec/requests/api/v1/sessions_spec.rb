@@ -4,8 +4,6 @@ RSpec.describe "Sessions", type: :request do
 
   request_helper
 
-  let(:user) { create(:user) }
-
   let(:valid_signin_params) {
     {
       email: user.email,
@@ -49,13 +47,15 @@ RSpec.describe "Sessions", type: :request do
     end
   end
 
-  it "POST /api/v1/users/sign_out" do
-    original_authentication_token = user.authentication_token
+  describe "POST /api/v1/users/sign_out" do
+    it "user's authentication_token has been reset" do
+      original_authentication_token = user.authentication_token
 
-    delete "/api/v1/users/sign_out", signed_get
+      delete "/api/v1/users/sign_out", signed_get
 
-    user.reload
-    expect(user.authentication_token).not_to eq original_authentication_token
+      user.reload
+      expect(user.authentication_token).not_to eq original_authentication_token
+    end
   end
 
 end

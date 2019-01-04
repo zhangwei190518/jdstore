@@ -7,8 +7,6 @@ RSpec.describe Api::V1::RegistrationsController, type: :controller do
     controller.class.skip_before_action :access_token_auth, raise: false
   end
 
-  let(:user) { create(:user) }
-
   let(:valid_signup_params) {
     {
       email: Faker::Internet.safe_email,
